@@ -13,3 +13,8 @@ The android app lets you:
  &emsp;
 <img src="https://user-images.githubusercontent.com/72456458/149090840-c74d2f03-dbf5-43c7-a6bb-08b14be16189.jpg" width="225"/>
 </div>
+
+## Permissions 📱
+The app requires the device to be running a version of Android 6.0 or higher. The following permissions are required:
+ - Internet permissions
+ - Precise Location (GPS and network-based)

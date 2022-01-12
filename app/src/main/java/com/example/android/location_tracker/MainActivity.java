@@ -2,6 +2,8 @@ package com.example.android.location_tracker;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +27,8 @@ import com.google.android.gms.tasks.CancellationToken;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnTokenCanceledListener;
 import com.google.android.gms.tasks.Task;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -165,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding.map.loadUrl(locationURL);
 
+        Geocoder geocoder = new Geocoder(this);
+
         // sleep for 5 seconds, so that when the map is visible, it does not load in parts
         new Handler().postDelayed(new Runnable() {
             public void run() {
@@ -172,6 +178,15 @@ public class MainActivity extends AppCompatActivity {
                 binding.progressText.setVisibility(View.INVISIBLE);
                 binding.latitude.setText(latitude);
                 binding.longitude.setText(longitude);
+
+                try {
+                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),
+                            location.getLongitude(),
+                            1);
+                    binding.address.setText(addresses.get(0).getAddressLine(0));
+                } catch (Exception e) {
+                    binding.address.setText("Unable to get address");
+                }
                 binding.map.setVisibility(View.VISIBLE);
             }
         }, 5000);

@@ -1,5 +1,5 @@
 # Location Tracker - Android App 🎯
-A simple android application that periodically tracks the users location and displays it.
+A simple android application that periodically tracks the user's location and displays it.
 
 ## Features 📝
 The android app lets you:
